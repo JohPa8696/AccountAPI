@@ -6,6 +6,7 @@ API spec openapi.json was generated with OpenAPI and additionnal changes.
 
 ## 3. Tests
 Rudamentary micro unit test built with pytest. Run test:
+
     - Install: pytest
     - Navigate to: app/
     - Execute: pytest
