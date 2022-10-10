@@ -1,0 +1,272 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "AccountAPI",
+    "version": "0.1.0",
+    "description": "Simple API for managing system accounts."
+  },
+  "paths": {
+    "/healthz": {
+      "description": "This endpoint allows external services to inspect the health of account api",
+      "get": {
+        "summary": "Get Api health status",
+        "operationId": "get_health_healthz_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}": {
+      "description": "This endpoint allows client to manage accounts",
+      "get": {
+        "summary": "Get account by id",
+        "operationId": "get_accounts__account_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Account Id",
+              "type": "integer",
+              "example": 1
+            },
+            "name": "account_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update account details with id",
+        "operationId": "update_accounts__account_id__put",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Account Id",
+              "type": "integer",
+              "example": 1
+            },
+            "name": "account_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new account with id",
+        "operationId": "create_accounts__account_id__post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Account Id",
+              "type": "integer",
+              "example": 1
+            },
+            "name": "account_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an account with id",
+        "operationId": "remove_accounts__account_id__delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Account Id",
+              "type": "integer",
+              "example": 1
+            },
+            "name": "account_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Account": {
+        "title": "Account",
+        "description": "A schema represents accounts",
+        "required": [
+          "name",
+          "balance"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "balance": {
+            "title": "Balance",
+            "type": "number"
+          },
+          "active": {
+            "title": "Active",
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
