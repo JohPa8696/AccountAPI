@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "AccountAPI",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Simple API for managing system accounts."
   },
   "paths": {

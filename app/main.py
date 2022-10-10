@@ -13,7 +13,7 @@ class Account(BaseModel):
 
 app = FastAPI(
     title = "AccountAPI",
-    version = "0.0.1",
+    version = "1.0.0",
     description = "Simple API for managing system accounts.",
     openapi_url="/api/v1/openapi.json"
 )
