@@ -49,7 +49,7 @@ def test_update_account_with_valid_account_id(client):
     }
 
     res = client.put(f'/accounts/{account_id}', json=updated_account)
-    assert res.status_code == 201
+    assert res.status_code == 200
     assert res.json() == updated_account
  
 def test_update_account_with_invalid_account_id(client):
